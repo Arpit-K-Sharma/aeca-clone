@@ -203,47 +203,18 @@ export default function SiteHeader() {
               ☰
             </summary>
             <div className="absolute right-0 top-full w-full bg-white shadow-lg py-2 z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
-              {NAV.map((item) =>
-                item.dropdown ? (
-                  // Nested accordion for items with a desktop dropdown (About, Members) —
-                  // the label toggles the sub-list open/closed (matches common mobile nav
-                  // patterns) instead of navigating directly, since it has no single page
-                  // of its own that represents both children.
-                  <details key={item.label} className="border-b border-tint-light">
-                    <summary className="flex items-center justify-between px-6 py-3 text-sm font-montserrat font-semibold uppercase cursor-pointer list-none">
-                      {item.label}
-                      <svg width="10" height="10" viewBox="0 0 283 160" className="fill-dark">
-                        <polygon points="141.665 53.333 0 160 283.33 160" />
-                      </svg>
-                    </summary>
-                    <div className="bg-tint-lightest">
-                      {item.dropdown.map((d) => (
-                        <Link
-                          key={d.href}
-                          href={d.href}
-                          className="block px-10 py-3 text-sm text-dark hover:text-primary"
-                          onClick={() => {
-                            if (mobileMenuRef.current) mobileMenuRef.current.open = false;
-                          }}
-                        >
-                          {d.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </details>
-                ) : (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="block px-6 py-3 border-b border-tint-light text-sm font-montserrat font-semibold uppercase"
-                    onClick={() => {
-                      if (mobileMenuRef.current) mobileMenuRef.current.open = false;
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
+              {NAV.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="block px-6 py-3 border-b border-tint-light text-sm font-montserrat font-semibold uppercase"
+                  onClick={() => {
+                    if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </details>
         </div>
