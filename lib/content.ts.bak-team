@@ -51,28 +51,6 @@ export const FULL_TEAM_CURRENT = [
   'Suman Adhikari (Executive Member)',
 ];
 
-// Real per-person headshots pulled directly from the live site (aeca.com.au/?page_id=2844),
-// in the same order as FULL_TEAM_CURRENT above. "chudamani-silwal.png" is the AECA leaf
-// logo because that's what the real site itself falls back to for that member — not a
-// clone-introduced placeholder, reproduced faithfully.
-export const FULL_TEAM_CURRENT_PHOTOS = [
-  '/team/komal-raj-pathak.png',
-  '/team/chudamani-silwal.png',
-  '/team/satya-p-kandel.png',
-  '/team/shankar-dharel.png',
-  '/team/yogendra-poudel.png',
-  '/team/bhuwan-pandey.png',
-  '/team/ram-chalise.png',
-  '/team/anish-puri.png',
-  '/team/arjun-thapaliya.png',
-  '/team/arun-gautam.png',
-  '/team/bhumeshor-subedi.png',
-  '/team/dipak-poudel.png',
-  '/team/sagar-kumar-sharma.png',
-  '/team/sunil-sigdel.png',
-  '/team/suman-adhikari.png',
-];
-
 export const FULL_TEAM_PRIOR = [
   'Bhupal Sitoula (President)',
   'Ashish Bhandari (Vice-President)',
