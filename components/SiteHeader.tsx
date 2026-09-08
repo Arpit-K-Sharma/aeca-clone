@@ -1,0 +1,224 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { LOGO } from '@/lib/assets';
+
+const NAV = [
+  { label: 'Home', href: '/' },
+  {
+    label: 'About',
+    href: '/about',
+    dropdown: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Meet Our Team', href: '/team' },
+    ],
+  },
+  {
+    label: 'Members',
+    href: '/members',
+    dropdown: [
+      { label: 'Our Members', href: '/members' },
+      { label: 'Membership Certificate', href: '/membership-certificate' },
+    ],
+  },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Events', href: '/events' },
+  { label: 'News', href: '/news' },
+  { label: 'Contact', href: '/contact' },
+];
+
+export default function SiteHeader() {
+  // Shadow-on-scroll: true once scrolled past ~20px.
+  const [scrolled, setScrolled] = useState(false);
+  // Utility bar compress/hide on scroll-down, reappear on scroll-up.
+  const [utilityHidden, setUtilityHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        const delta = currentY - lastScrollY.current;
+
+        // Hysteresis: two thresholds with a dead zone between them so that
+        // normal scroll micro-movement / momentum settling around ~20px
+        // can't flip the shadow state back and forth (was a single 20px
+        // threshold, which caused visible blink on nearly every scroll-down
+        // gesture). Above 24px -> shadow on; below 12px -> shadow off;
+        // in between (12-24px) -> keep whatever state it already had.
+        setScrolled((prev) => {
+          if (currentY > 24) return true;
+          if (currentY < 12) return false;
+          return prev;
+        });
+
+        // Only react to meaningful scroll movement (avoids jitter on tiny deltas)
+        // and never hide the utility bar near the very top of the page.
+        if (currentY <= 20) {
+          setUtilityHidden(false);
+        } else if (Math.abs(delta) > 4) {
+          setUtilityHidden(delta > 0);
+        }
+
+        lastScrollY.current = currentY;
+        ticking = false;
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <header className="w-full sticky top-0 z-50">
+      {/* Row 1: Utility bar — compresses/hides smoothly on scroll-down, reappears on scroll-up.
+          NOTE: this used to animate `max-height` (0<->40px), which is a LAYOUT-affecting
+          property. Animating it inside a `position: sticky` header while the user is
+          actively scrolling forces a layout recalculation every frame, which collides with
+          the browser's default CSS Scroll Anchoring behavior (it tries to auto-correct
+          scroll position to compensate for in-flight layout shifts near the top of the
+          viewport) — that correction fed back into this same onScroll handler and caused
+          a visible flicker/stutter on nearly every scroll-down gesture. Fixed by animating
+          `transform: translateY()` instead, which is compositor-only and never touches
+          layout, so it cannot trigger (or be disrupted by) scroll anchoring. The outer
+          wrapper now has a fixed height (h-10 = 40px) + overflow-hidden so the
+          translated-away content doesn't visually leak into the row below. */}
+      <div className="h-10 overflow-hidden">
+        <div
+          className="bg-dark text-white text-xs h-10 transition-transform duration-300 ease-in-out"
+          style={{
+            transform: utilityHidden ? 'translateY(-100%)' : 'translateY(0)',
+          }}
+        >
+        <div className="container-boxed flex items-center justify-between py-2">
+          <div className="flex items-center gap-4">
+            <a href="mailto:info@aeca.com.au" className="text-white hover:text-primary">
+              <i className="fa fa-envelope mr-1" aria-hidden="true" /> info@aeca.com.au
+            </a>
+          </div>
+          <div className="hidden sm:flex items-center gap-4">
+            <a
+              href="https://aeca.com.au/wp-content/uploads/2021/04/AECA-Code-of-Practice-2015.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white hover:text-primary"
+            >
+              Code of Practice
+            </a>
+            <a
+              href="https://www.facebook.com/australianeducationconsultantsalliance"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white hover:text-primary"
+              aria-label="Facebook"
+            >
+              <i className="fa fa-facebook-square" aria-hidden="true" />
+            </a>
+            {/* Verbatim clone of live defect: "Join Us" points at the legacy ausnepit.com domain (ADR-004) */}
+            <a
+              href="http://ausnepit.com/aeca?page_id=610"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white hover:text-primary"
+            >
+              Join Us
+            </a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      {/* Row 2: Main nav — gains a lifted shadow once scrolled past ~20px.
+          NOTE: sticky positioning lives on the parent <header> (not here) —
+          a sticky element's "stick room" is bounded by its own containing
+          block, and this row's direct parent (<header>) was previously only
+          136px tall (40px utility bar + 96px nav), so the row could only
+          stay pinned for the first ~40px of scroll before being dragged
+          off-screen with the rest of <header>. Hoisting `sticky top-0 z-50`
+          onto <header> itself (whose containing block is the full-height
+          <body>) fixes this while keeping the utility-bar collapse/shadow
+          behavior below identical. */}
+      <div
+        className={`bg-white transition-shadow duration-300 ease-in-out ${
+          scrolled ? 'shadow-[0_2px_8px_rgba(0,0,0,0.08)]' : 'shadow-sm'
+        }`}
+      >
+        <div className="container-boxed flex items-center justify-between py-4">
+          <Link href="/" className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={LOGO} alt="AECA logo" width={143} height={91} className="h-16 w-auto" />
+          </Link>
+
+          <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+            {NAV.map((item) => (
+              <div key={item.label} className="nav-item relative group">
+                <Link
+                  href={item.href}
+                  className="flex items-center gap-1 font-montserrat font-semibold text-sm uppercase text-dark hover:text-primary"
+                >
+                  <svg width="8" height="8" viewBox="0 0 283 160" className="fill-primary">
+                    <polygon points="141.665 53.333 0 160 283.33 160" />
+                  </svg>
+                  {item.label}
+                </Link>
+                {item.dropdown && (
+                  <div className="dropdown-menu absolute left-0 top-full min-w-[220px] bg-white shadow-lg py-2 group-hover:block">
+                    {item.dropdown.map((d) => (
+                      <Link
+                        key={d.href}
+                        href={d.href}
+                        className="block px-4 py-2 text-sm text-dark hover:text-primary hover:bg-tint-lightest"
+                      >
+                        {d.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <button aria-label="Search" className="text-dark hover:text-primary">
+              <i className="fa fa-search" aria-hidden="true" />
+            </button>
+          </nav>
+
+          {/* Mobile nav — kept reachable/tappable at every scroll position: it lives
+              inside the nav row, which is itself inside the sticky <header> (not the
+              collapsible utility bar), so it never gets clipped or hidden by the
+              scroll-reactive utility bar above, and stays pinned on-screen at any
+              scroll depth. */}
+          {/* Mobile nav — controlled via ref (not a plain uncontrolled <details>)
+              because a native <details> has no way to know a Next.js client-side
+              route change happened underneath it, so it stayed open after tapping
+              a link. Each Link's onClick explicitly closes it so navigating to a
+              new page also closes the menu automatically. */}
+          <details ref={mobileMenuRef} className="lg:hidden">
+            <summary className="list-none cursor-pointer text-2xl" aria-label="Open menu">
+              ☰
+            </summary>
+            <div className="absolute right-0 top-full w-full bg-white shadow-lg py-2 z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
+              {NAV.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="block px-6 py-3 border-b border-tint-light text-sm font-montserrat font-semibold uppercase"
+                  onClick={() => {
+                    if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </details>
+        </div>
+      </div>
+    </header>
+  );
+}

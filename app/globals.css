@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #FF4332;
+  --color-dark: #3F3836;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 16px;
+  line-height: 2;
+  color: var(--color-dark);
+  font-family: var(--font-opensans), Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.8px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  color: var(--color-dark);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.35s;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Button "border peel" hover effect */
+.btn-theme {
+  position: relative;
+  display: inline-block;
+  padding: 22px 40px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  background-color: var(--color-primary);
+  color: #fff;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.35s;
+}
+
+.btn-theme::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 0;
+  background: #fff;
+  transition: height 0.35s;
+  z-index: -1;
+}
+
+.btn-theme:hover::after {
+  height: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .btn-theme {
+    padding: 20px 30px;
+  }
+}
+
+.btn-small {
+  padding: 10px 15px !important;
+}
+
+.width-1000 {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.width-1370 {
+  max-width: 1370px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-boxed {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-inline {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Nav dropdown - CSS hover only */
+.nav-item .dropdown-menu {
+  display: none;
+}
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* Elevation system (research 2.3) — restrained institutional tone, not startup-flashy.
+   Two steps only: resting (level-1) and hover/active (level-2), both shadow-tinted with
+   the brand's own dark #3F3836 rather than pure black. Consistent 180ms ease transition
+   and an 8px card radius across team cards, member-logo cards, news cards, gallery tiles. */
+.card-elevated {
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(63, 56, 54, 0.08), 0 1px 2px rgba(63, 56, 54, 0.06);
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.card-elevated:hover {
+  box-shadow: 0 4px 12px rgba(63, 56, 54, 0.12);
+}
+
+/* Swiper logo-wall overrides — keep arrows/dots on-brand and unobtrusive */
+.donor-logo-swiper .swiper-button-next,
+.donor-logo-swiper .swiper-button-prev,
+.members-logo-swiper .swiper-button-next,
+.members-logo-swiper .swiper-button-prev {
+  color: var(--color-primary);
+  --swiper-navigation-size: 20px;
+}
+
+.donor-logo-swiper .swiper-pagination-bullet-active,
+.members-logo-swiper .swiper-pagination-bullet-active {
+  background: var(--color-primary);
+}
