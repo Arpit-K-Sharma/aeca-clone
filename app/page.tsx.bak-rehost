@@ -4,7 +4,7 @@ import MembersShowcase from '@/components/MembersShowcase';
 import LightboxGrid from '@/components/LightboxGrid';
 import NewsPreview from '@/components/NewsPreview';
 import DonorLogoStrip from '@/components/DonorLogoStrip';
-import { HERO_BG, LOGO, PRESIDENT_PHOTO } from '@/lib/assets';
+import { HERO_BG, LOGO } from '@/lib/assets';
 
 export default function HomePage() {
   return (
@@ -69,7 +69,7 @@ export default function HomePage() {
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={PRESIDENT_PHOTO}
+              src="https://aeca.com.au/wp-content/uploads/2024/12/President-1024x1024.png"
               alt="Komal Raj Pathak"
               className="rounded w-full object-cover"
             />

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LOGO, CODE_OF_PRACTICE_PDF } from '@/lib/assets';
+import { LOGO } from '@/lib/assets';
 import { ABOUT_BLURB } from '@/lib/content';
 
 export default function SiteFooter() {
@@ -33,7 +33,7 @@ export default function SiteFooter() {
             <li><a href="#" className="hover:text-primary">Terms &amp; condition</a></li>
             <li>
               <a
-                href={CODE_OF_PRACTICE_PDF}
+                href="https://aeca.com.au/wp-content/uploads/2021/04/AECA-Code-of-Practice-2015.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-primary"

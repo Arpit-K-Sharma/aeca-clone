@@ -1,9 +1,7 @@
-// Centralized asset URLs — all rehosted locally under public/uploads/ (mirrors
-// aeca.com.au's own /wp-content/uploads/YYYY/MM/filename path exactly).
-// Previously hotlinked directly to aeca.com.au; rehosted so the site doesn't
-// depend on the real aeca.com.au site being reachable for its own images to load.
+// Centralized asset URLs — all hotlinked directly from aeca.com.au (no rehosting).
+// Any ausnepit.com legacy path has been domain-rewritten to aeca.com.au per ADR-002.
 
-const BASE = '/uploads';
+const BASE = 'https://aeca.com.au/wp-content/uploads';
 
 export const LOGO = `${BASE}/2024/10/logo-1.png`;
 export const FAVICON_32 = `${BASE}/2019/05/cropped-logo-32x32.png`;

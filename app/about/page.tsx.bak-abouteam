@@ -2,7 +2,7 @@ import PageHeader from '@/components/PageHeader';
 import AboutSummary from '@/components/AboutSummary';
 import TeamGrid from '@/components/TeamGrid';
 import MembersShowcase from '@/components/MembersShowcase';
-import { OBJECTIVES, ABOUT_TEAM, ABOUT_TEAM_PHOTOS } from '@/lib/content';
+import { OBJECTIVES, ABOUT_TEAM } from '@/lib/content';
 
 export const metadata = { title: 'About Us - AECA' };
 
@@ -33,7 +33,7 @@ export default function AboutPage() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container-boxed">
           <h2 className="text-3xl font-montserrat font-bold mb-10">Team Members</h2>
-          <TeamGrid names={ABOUT_TEAM} photos={ABOUT_TEAM_PHOTOS} />
+          <TeamGrid names={ABOUT_TEAM} />
         </div>
       </section>
 

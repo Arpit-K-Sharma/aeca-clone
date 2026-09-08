@@ -33,26 +33,6 @@ export const ABOUT_TEAM = [
   'Satya P Kandel (Treasurer)',
 ];
 
-// Real per-person headshots for the About page's Team Members section, pulled
-// directly from the live site (aeca.com.au/?page_id=612), in the same order as
-// ABOUT_TEAM above. This is a different (older/historical) roster than the
-// Meet Our Team page's FULL_TEAM_CURRENT, matching the real site's own layout.
-export const ABOUT_TEAM_PHOTOS = [
-  '/uploads/2021/05/1AECA-300x300.jpg',
-  '/uploads/2018/03/Ashish-Bhandari-VP-1-768x1024-1-e1617678128490.jpg',
-  '/uploads/2018/03/Mohan-Prasad-Dhungana-VP-1024x1024-1-300x300.jpg',
-  '/uploads/2018/03/Ram-Chandra-Poudel-VP-1024x1024-1-300x300.jpg',
-  '/uploads/2018/03/Komal-Raj-Pathak-General-Secretary-300x300.jpg',
-  '/uploads/2018/03/Dinesh-Khanal-Joint-Secretary1-300x300.jpg',
-  '/uploads/2018/03/global-7-10-18-21-879x1024-1-e1617671925562-300x300.jpg',
-  '/uploads/2021/04/mani-300x300.png',
-  '/uploads/2018/03/Bhumeshor-Subedi-Executive-Member-300x300.jpg',
-  '/uploads/2018/03/Shrishti-Shah-Executive-Member-300x300.jpg',
-  '/uploads/2018/03/surya-300x300.jpg',
-  '/uploads/2018/03/Bikash-Bhujel-Executive-Member-1024x906-1-300x300.jpg',
-  '/uploads/2021/04/Master-1-300x300.png',
-];
-
 export const FULL_TEAM_CURRENT = [
   'Komal Raj Pathak (President)',
   'Chudamani Silwal (Vice President)',
