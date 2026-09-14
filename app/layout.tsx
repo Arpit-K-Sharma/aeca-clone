@@ -1,35 +1,21 @@
 import type { Metadata } from 'next';
-import { Montserrat, Open_Sans, Roboto, Roboto_Slab } from 'next/font/google';
+import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import { FAVICON_32, FAVICON_192, APPLE_TOUCH_ICON } from '@/lib/assets';
 
-const montserrat = Montserrat({
+const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '900'],
-  variable: '--font-montserrat',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
   display: 'swap',
 });
 
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-opensans',
-  display: 'swap',
-});
-
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-roboto',
-  display: 'swap',
-});
-
-const robotoSlab = Roboto_Slab({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-robotoslab',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -56,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body
-        className={`${montserrat.variable} ${openSans.variable} ${roboto.variable} ${robotoSlab.variable} font-opensans antialiased`}
+        className={`${manrope.variable} ${inter.variable} font-inter antialiased`}
       >
         <SiteHeader />
         <main>{children}</main>
