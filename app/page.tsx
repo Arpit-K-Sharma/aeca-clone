@@ -139,7 +139,7 @@ export default function HomePage() {
       </section>
 
       {/* Green "Our photo gallery" banner section */}
-      <section className="py-16 md:py-24 bg-[#008852] text-white">
+      <section className="py-16 md:py-24 bg-accent-green text-white">
         <div className="container-boxed">
           <h2 className="text-3xl font-montserrat font-bold mb-8">Our photo gallery</h2>
           <LightboxGrid />

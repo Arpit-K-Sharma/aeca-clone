@@ -3,26 +3,45 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #FF4332;
-  --color-dark: #3F3836;
+  --color-primary: #0F6B52;
+  --color-dark: #18352D;
+  --color-gold: #D9A441;
+  --color-cream: #F6F1E8;
+  --color-surface: #F8FBF9;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--color-cream);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
   font-size: 16px;
-  line-height: 2;
+  line-height: 1.75;
   color: var(--color-dark);
-  font-family: var(--font-opensans), Arial, sans-serif;
+  font-family: var(--font-inter), Arial, sans-serif;
+  background: var(--color-cream);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.8px;
+  letter-spacing: -0.04em;
   margin-top: 15px;
   margin-bottom: 20px;
-  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-family: var(--font-manrope), Arial, sans-serif;
   color: var(--color-dark);
 }
 

@@ -7,20 +7,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FF4332',
-        dark: '#3F3836',
-        'tint-light': '#F7EAE8',
-        'text-muted': '#817A78',
-        'tint-lighter': '#FBF0EE',
-        'tint-lightest': '#FFF5F4',
-        'accent-gold': '#EFBB1C',
-        'accent-green': '#008852',
+        primary: '#0F6B52',
+        dark: '#18352D',
+        'tint-light': '#E6EFEA',
+        'text-muted': '#63736D',
+        'tint-lighter': '#F3F7F4',
+        'tint-lightest': '#F8FBF9',
+        'accent-gold': '#D9A441',
+        'accent-green': '#0F6B52',
       },
       fontFamily: {
-        montserrat: ['var(--font-montserrat)'],
-        opensans: ['var(--font-opensans)'],
-        roboto: ['var(--font-roboto)'],
-        robotoslab: ['var(--font-robotoslab)'],
+        montserrat: ['var(--font-manrope)'],
+        opensans: ['var(--font-inter)'],
+        manrope: ['var(--font-manrope)'],
+        inter: ['var(--font-inter)'],
       },
       fontSize: {
         xs: '12px',
